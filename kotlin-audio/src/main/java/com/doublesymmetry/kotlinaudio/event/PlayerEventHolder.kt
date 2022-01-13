@@ -29,9 +29,6 @@ class PlayerEventHolder {
     private var _positionChanged = MutableSharedFlow<PositionChangedReason?>(1)
     var positionChanged = _positionChanged.asSharedFlow()
 
-    private var _onAudioFocusChanged = MutableSharedFlow<FocusChangeData>(1)
-    var onAudioFocusChanged = _onAudioFocusChanged.asSharedFlow()
-
     private var _onPlaybackMetadata = MutableSharedFlow<PlaybackMetadata>(1)
     var onPlaybackMetadata = _onPlaybackMetadata.asSharedFlow()
 
@@ -67,12 +64,6 @@ class PlayerEventHolder {
     internal fun updatePositionChangedReason(reason: PositionChangedReason) {
         coroutineScope.launch {
             _positionChanged.emit(reason)
-        }
-    }
-
-    internal fun updateOnAudioFocusChanged(isPaused: Boolean, isPermanent: Boolean) {
-        coroutineScope.launch {
-            _onAudioFocusChanged.emit(FocusChangeData(isPaused, isPermanent))
         }
     }
 
