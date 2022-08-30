@@ -242,6 +242,11 @@ abstract class BaseAudioPlayer internal constructor(private val context: Context
     }
 
     fun play() {
+        if (exoPlayer.playbackState == Player.STATE_IDLE) {
+            exoPlayer.prepare();
+        } else if (exoPlayer.playbackState == Player.STATE_ENDED) {
+            exoPlayer.seekToDefaultPosition(exoPlayer.currentMediaItemIndex);
+        }
         exoPlayer.play()
     }
 
