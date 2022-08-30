@@ -86,7 +86,9 @@ class QueuedAudioPlayer(context: Context, playerConfig: PlayerConfig = PlayerCon
         queue.add(mediaSource)
         exoPlayer.addMediaSource(mediaSource)
 
-        exoPlayer.playWhenReady = playWhenReady
+        if (playWhenReady) {
+            exoPlayer.playWhenReady = true
+        }
         exoPlayer.prepare()
     }
 
@@ -100,7 +102,9 @@ class QueuedAudioPlayer(context: Context, playerConfig: PlayerConfig = PlayerCon
         queue.addAll(mediaSources)
         exoPlayer.addMediaSources(mediaSources)
 
-        exoPlayer.playWhenReady = playWhenReady
+        if (playWhenReady) {
+            exoPlayer.playWhenReady = true
+        }
         exoPlayer.prepare()
     }
 
