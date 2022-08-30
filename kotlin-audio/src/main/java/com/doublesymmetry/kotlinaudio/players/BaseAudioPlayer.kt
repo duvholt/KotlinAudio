@@ -344,7 +344,7 @@ abstract class BaseAudioPlayer internal constructor(private val context: Context
         return ProgressiveMediaSource.Factory(
             factory, DefaultExtractorsFactory()
                 .setConstantBitrateSeekingEnabled(true)
-        )
+        ).setLoadErrorHandlingPolicy(DefaultLoadErrorHandlingPolicy(Int.MAX_VALUE))
             .createMediaSource(mediaItem)
     }
 
